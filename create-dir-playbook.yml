@@ -1,0 +1,9 @@
+---
+- name: To create the directory 
+  hosts: all
+  become: true
+  tasks:
+    - name: Create Dir
+      file:
+        path: /home/ubuntu/Mydir1
+        state: directory
