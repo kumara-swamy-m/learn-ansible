@@ -1,0 +1,11 @@
+---
+
+- name: local deployment
+  hosts: all
+  become: true
+  tasks:
+    - name: Copying index to /var/www/html
+      copy:
+        src: index.html
+        dest: /var/www/html/index.html
+
