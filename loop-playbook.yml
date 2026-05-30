@@ -1,0 +1,16 @@
+---
+- hosts: all
+  become: true
+
+  tasks:
+    - name: Create directories
+      file:
+        path: "/home/ubuntu/{{ item }}"
+        state: directory
+
+      loop:
+        - project1
+        - project2
+        - project3
+
+

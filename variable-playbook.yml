@@ -7,7 +7,7 @@
     package_name: apache2
     service:
       name: apache2
-      state: started
+      state: stopped
   tasks:
     - name: Install Apache
       apt:
