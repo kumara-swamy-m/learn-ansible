@@ -1,0 +1,43 @@
+---
+- name: Error Handling 
+  hosts: all
+  become: true
+
+  tasks:
+
+    # ignore_errors example
+    - name: Stop a service that does not exist
+      service:
+        name: fake-service
+        state: stopped
+      ignore_errors: yes
+
+    - name: Continue execution
+      debug:
+        msg: "Playbook continued even though the previous task failed"
+
+
+    # block + rescue + always example
+    - block:
+
+        - name: Start a non-existent service
+          service:
+            name: apache999
+            state: started
+
+      rescue:
+
+        - name: Handle the failure
+          debug:
+            msg: "Service could not be started"
+
+        - name: Create error directory
+          file:
+            path: /tmp/error_logs
+            state: directory
+
+      always:
+
+        - name: Always run this task
+          debug:
+            msg: "This task runs whether the block succeeds or fails"
