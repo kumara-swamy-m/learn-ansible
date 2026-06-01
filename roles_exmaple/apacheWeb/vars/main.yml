@@ -1,0 +1,7 @@
+#SPDX-License-Identifier: MIT-0
+---
+# vars file for apacheWeb
+
+
+my_package: apache2
+my_service: apache2
