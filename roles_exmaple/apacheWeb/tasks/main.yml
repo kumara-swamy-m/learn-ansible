@@ -1,3 +1,23 @@
 #SPDX-License-Identifier: MIT-0
 ---
 # tasks file for apacheWeb
+#
+#
+#
+- name: Install Apache
+  apt:
+    name: "{{ my_package }}"
+    state: present
+    update_cache: yes
+
+- name: Start Apache
+  service:
+    name: "{{ my_service }}"
+    state: started
+    enabled: yes
+
+- name: Deploy Website
+  template:
+    src: index.html.j2
+    dest: /var/www/html/index.html
+  notify: Restart Apache
